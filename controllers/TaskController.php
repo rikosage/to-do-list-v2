@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Task;
+use app\models\Comment;
 
 
 /**
@@ -65,16 +66,17 @@ class TaskController extends Controller
   {
     $task = Task::findOne($id);
     $commentDeleted = Comment::deleteAll(["task_id" => $id]);
-    if($task->delete() && $commentDeleted)
+    if($task->delete())
     {
-      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Удалена'));
+      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Запись удалена'));
+      return $this->redirect("/");
     }
     else
     {
       Yii::$app->session->setFlash('errors', $task->errors);
     }
 
-    return $this->redirect("/");
+    
   }
 
   public function actionNewComment($id, $text)

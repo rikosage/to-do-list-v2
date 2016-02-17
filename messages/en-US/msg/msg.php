@@ -20,5 +20,6 @@ return [
    "Слишком короткое сообщение"=> "Too short message",
    "Сменить язык" => "Change language",
    "Отправить на Email" => "Send to Email",
-
+   "Письмо отправлено" => "Mail has been send",
+   "Что-то пошло не так, письмо не отправлено" => 'Something went wrong! Mail doesn\'t sended',
 ]; 
