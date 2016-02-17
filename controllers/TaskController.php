@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Task;
+use yii\bootstrap\Alert;
 
 /**
  * Task controller
@@ -28,17 +29,17 @@ class TaskController extends Controller
   {
     $task = new Task();
     $task->title = $_POST['title'];
-    $task->text  = $_POST['text'];
     $task->status = Task::STATUS_ACTIVE;
     $task->date = date('Y-m-d H:i:s');
     if($task->save())
     {
-      echo "string";
+      Yii::$app->session->setFlash('success', "Сообщение добавлено");
     }
     else
     {
-      print_r($task->errors);
+      Yii::$app->session->setFlash('errors', $task->errors);
     }
+    return $this->redirect("/");
   }
 
 }

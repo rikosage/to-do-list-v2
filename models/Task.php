@@ -2,10 +2,10 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\base\InvalidParamException;
 use yii\base\Model;
-use Yii;
 
 class Task extends ActiveRecord
 {
@@ -15,7 +15,9 @@ class Task extends ActiveRecord
 
   public function rules(){
     return array(
-        ['text', 'required'],
+        ['title', 'required', 'message'=>"Заголовок обязателен!"],
+        ['title', 'unique', 'message'=>"Такое задание уже есть!"],
+        ['title', "string", 'min'=>3, 'max'=>25, 'tooShort'=>"Минимум три символа в заголовке!", "tooLong"=>"Максимум 25 символов в заголовке!"],
     );
 }
 
