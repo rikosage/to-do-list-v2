@@ -2,12 +2,6 @@
 
 <?php $this->title = 'Task'; ?>
 
-<pre>
-<?php //print_r($data[0]['comment']) ?>
-</pre>
-
-
-
 <?php  
   if (Yii::$app->session->hasFlash('errors'))
   {
@@ -33,8 +27,6 @@
   }
 ?>
 
-
-
 <div class="row">
   <div class="add-container col-lg-8 col-lg-offset-2">
     <form action="/task/new" method = "get">
@@ -51,16 +43,17 @@
   <?php foreach ($data as $task){ ?>
   <?php $active = $task->status ? "active" : "non-active"; ?>
     <div class="row task <?php echo $active; ?>">
-
+     <form action="/task/change" method = "get">
       <div class="col-lg-2 activate-task">
-          <button class = "btn btn-success form-control"><span class = "glyphicon glyphicon-ok"></span></button>
+          <input class = "status" type="hidden" name = "status" value = "<?php echo $task->status; ?>">
+          <button class = "btn btn-success form-control change-status"><span class = "glyphicon glyphicon-ok"></span></button>
       </div>
       <div class="col-lg-8 title">
         <h4 class = "text-center col-lg-8"><?php echo $task->title; ?></h4>
         <p class = "text-right"><?php echo $task->date; ?></p>
       </div>
       <div class="col-lg-8 change-title">
-        <form action="/task/change" method = "get">
+       
           <input type="hidden" name = "id" value = "<?php echo $task->id; ?>">
           <input class = "form-control" type="text" name = "title" value = "<?php echo $task->title; ?>">
           <button class="btn btn-success submit-change">Принять</button>

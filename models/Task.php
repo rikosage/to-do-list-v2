@@ -17,7 +17,7 @@ class Task extends ActiveRecord
     return array(
         ['title', 'required', 'message'=>"Заголовок обязателен!"],
         ['title', 'unique', 'message'=>"Такое задание уже есть!"],
-        ['title', "string", 'min'=>3, 'max'=>50, 'tooShort'=>"Минимум три символа в заголовке!", "tooLong"=>"Максимум 50 символов в заголовке!"],
+        ['title', "string", 'min'=>3, 'max'=>50, 'tooShort'=>"Слишком короткое сообщение", "tooLong"=>"Слишком длинное сообщение"],
     );
 }
 

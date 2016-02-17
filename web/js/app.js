@@ -20,8 +20,8 @@ $(document).ready(function(){
     return false;
   });
 
-  $('delete-task-button').click(function(){
-    if (confirm("Press a button!"))
+  $('.delete-task-button').click(function(){
+    if (confirm("You are sure?"))
     {
       return true;
     }
@@ -29,5 +29,10 @@ $(document).ready(function(){
     {
       return false;
     }
+  });
+
+  $('.change-status').click(function(){
+    var status = $(this).parent().find(".status");
+    status.val((status.val()==1) ? 0 : 1);
   });
 });

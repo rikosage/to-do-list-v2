@@ -23,7 +23,10 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<header>
+    <a href=""><?php echo Yii::t('msg/msg', 'Сменить язык'); ?></a>
+    <a href=""><?php echo Yii::t('msg/msg', 'Отправить на Email'); ?></a>
+</header>
 <div class="wrap">
     <div class="container">
         <?= Breadcrumbs::widget([

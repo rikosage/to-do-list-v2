@@ -35,7 +35,7 @@ class TaskController extends Controller
     $task->date = date('Y-m-d H:i:s');
     if($task->save())
     {
-      Yii::$app->session->setFlash('success', "Сообщение добавлено");
+      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Запись добавлена'));
     }
     else
     {
@@ -44,14 +44,15 @@ class TaskController extends Controller
     return $this->redirect("/");
   }
 
-  public function actionChange($id, $title)
+  public function actionChange($id, $title, $status = Task::STATUS_ACTIVE)
   {
     $task = Task::findOne($id);
     $task->title = $title;
     $task->date = date('Y-m-d H:i:s');
+    $task->status = $status;
     if($task->save())
     {
-      Yii::$app->session->setFlash('success', "Запись обновлена");
+      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Запись обновлена'));
     }
     else
     {
@@ -67,7 +68,7 @@ class TaskController extends Controller
     $commentDeleted = Comment::deleteAll(["task_id" => $id]);
     if($task->delete() && $commentDeleted)
     {
-      Yii::$app->session->setFlash('success', "Запись удалена");
+      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Удалена'));
     }
     else
     {
@@ -85,7 +86,7 @@ class TaskController extends Controller
     $comment->date = date('Y-m-d H:i:s');
     if ($comment->save())
     {
-      Yii::$app->session->setFlash('success', "Комментарий добавлен");
+      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Комментарий добавлен'));
     }
     else
     {
@@ -99,7 +100,7 @@ class TaskController extends Controller
     $comment = Comment::findOne($id);
     if($comment->delete())
     {
-      Yii::$app->session->setFlash('success', "Комментарий удален");
+      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Комментарий удален'));
     }
     else
     {
