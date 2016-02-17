@@ -6,8 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Task;
-use app\models\Comment;
-use yii\bootstrap\Alert;
+
 
 /**
  * Task controller
@@ -95,24 +94,4 @@ class TaskController extends Controller
     return $this->redirect("/");
   }
 
-  public function actionDeleteComment($id)
-  {
-    $comment = Comment::findOne($id);
-    if($comment->delete())
-    {
-      Yii::$app->session->setFlash('success', Yii::t('msg/msg', 'Комментарий удален'));
-    }
-    else
-    {
-      Yii::$app->session->setFlash('errors', $comment->errors);
-    }
-    
-    return $this->redirect("/");
-  }
-
-  public function actionLocale($lang)
-  {
-    Yii::$app->session->set('language', $lang);
-    return $this->redirect("/");
-  }
 }

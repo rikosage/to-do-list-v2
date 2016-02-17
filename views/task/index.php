@@ -84,7 +84,7 @@
           <div class="col-lg-8 comment-container">
             <div class = "bg-success comment ">
               <dir class="text-left col-lg-2">
-              <form action="/task/delete-comment" method = "get">
+              <form action="/comment/delete" method = "get">
                 <input type="hidden" name = "id" value = "<?php echo $comment->id; ?>">
                   <button class="btn btn-danger">
                   <span class="glyphicon glyphicon-remove"></span>
@@ -100,7 +100,7 @@
         <?php } ?>
       
       <div class="col-lg-8 new-comment" method = "get">
-        <form action="/task/new-comment/">
+        <form action="/comment/new/">
           <label>Комментировать</label>
           <input type="hidden" name = "id" value = "<?php echo $task->id; ?>" />
           <textarea name="text" class = "form-control"></textarea>
