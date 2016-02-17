@@ -110,4 +110,9 @@ class TaskController extends Controller
     return $this->redirect("/");
   }
 
+  public function actionLocale($lang)
+  {
+    Yii::$app->session->set('language', $lang);
+    return $this->redirect("/");
+  }
 }

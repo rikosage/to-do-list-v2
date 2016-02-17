@@ -14,11 +14,12 @@ class Task extends ActiveRecord
   const STATUS_COMPLETED = 0;
 
   public function rules(){
-    return array(
-        ['title', 'required', 'message'=>"Заголовок обязателен!"],
-        ['title', 'unique', 'message'=>"Такое задание уже есть!"],
-        ['title', "string", 'min'=>3, 'max'=>50, 'tooShort'=>"Слишком короткое сообщение", "tooLong"=>"Слишком длинное сообщение"],
-    );
+    return 
+    [
+        ['title', 'required', 'message'=>Yii::t('msg/msg', 'Заголовок обязателен')],
+        ['title', 'unique', 'message'=>Yii::t('msg/msg', 'Такое задание уже существует')],
+        ['title', "string", 'min'=>3, 'max'=>50, 'tooShort'=>Yii::t('msg/msg', 'Слишком короткое сообщение'), "tooLong"=>Yii::t('msg/msg', 'Слишком длинное сообщение')],
+    ];
 }
 
   public function getComment()

@@ -1,6 +1,7 @@
 <?php use yii\bootstrap\Alert; ?>
 
 <?php $this->title = 'Task'; ?>
+<?php Yii::$app->language = Yii::$app->session->get('language'); ?>
 
 <?php  
   if (Yii::$app->session->hasFlash('errors'))
@@ -30,10 +31,12 @@
 <div class="row">
   <div class="add-container col-lg-8 col-lg-offset-2">
     <form action="/task/new" method = "get">
-      <h4 class = "col-lg-8">Введите название нового задания</h4>
+      <h4 class = "col-lg-8"><?php echo Yii::t('msg/msg', 'Создать новую запись'); ?></h4>
       <div class="col-lg-8"><input class = "form-control" type="text" name = "title" /></div>
       <div class="col-lg-4">
-        <button type = "submit" class = "btn btn-success form-control">Создать</button>
+        <button type = "submit" class = "btn btn-success form-control">
+          <?php echo Yii::t('msg/msg', 'Создать'); ?>
+        </button>
       </div>
     </form>
   </div>
@@ -56,8 +59,12 @@
        
           <input type="hidden" name = "id" value = "<?php echo $task->id; ?>">
           <input class = "form-control" type="text" name = "title" value = "<?php echo $task->title; ?>">
-          <button class="btn btn-success submit-change">Принять</button>
-          <button class="btn btn-danger cancel-change">Отменить</button>
+          <button class="btn btn-success submit-change">
+            <?php echo Yii::t('msg/msg', 'Подтвердить'); ?>
+          </button>
+          <button class="btn btn-danger cancel-change">
+            <?php echo Yii::t('msg/msg', 'Отменить'); ?>
+          </button>
         </form>
       </div>
       <div class="col-lg-2 text-right task-control">
@@ -97,7 +104,9 @@
           <label>Комментировать</label>
           <input type="hidden" name = "id" value = "<?php echo $task->id; ?>" />
           <textarea name="text" class = "form-control"></textarea>
-          <button class = "btn btn-success">Подтвердить</button>
+          <button class = "btn btn-success">
+            <?php echo Yii::t('msg/msg', 'Подтвердить'); ?>
+          </button>
           
         </form>
       </div>

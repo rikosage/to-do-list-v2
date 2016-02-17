@@ -23,9 +23,14 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<header>
-    <a href=""><?php echo Yii::t('msg/msg', 'Сменить язык'); ?></a>
-    <a href=""><?php echo Yii::t('msg/msg', 'Отправить на Email'); ?></a>
+<header class = "col-lg-6">
+    <div class="text-left col-lg-6">
+        <a href="/task/locale/?lang=ru-RU">Русский</a><br>
+        <a href="/task/locale/?lang=en-US">English</a>
+    </div>
+    <div class="text-right">
+        <a class = "text-right" href="/task/email"><?php echo Yii::t('msg/msg', 'Отправить на Email'); ?></a>
+    </div>
 </header>
 <div class="wrap">
     <div class="container">
