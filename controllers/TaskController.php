@@ -48,6 +48,7 @@ class TaskController extends Controller
   {
     $task = Task::findOne($id);
     $task->title = $title;
+    $task->date = date('Y-m-d H:i:s');
     if($task->save())
     {
       Yii::$app->session->setFlash('success', "Запись обновлена");
@@ -60,9 +61,20 @@ class TaskController extends Controller
     return $this->redirect("/");
   }
 
-  public function actionDelete()
+  public function actionDelete($id)
   {
+    $task = Task::findOne($id);
+    $commentDeleted = Comment::deleteAll(["task_id" => $id]);
+    if($task->delete() && $commentDeleted)
+    {
+      Yii::$app->session->setFlash('success', "Запись удалена");
+    }
+    else
+    {
+      Yii::$app->session->setFlash('errors', $task->errors);
+    }
 
+    return $this->redirect("/");
   }
 
   public function actionNewComment($id, $text)

@@ -68,8 +68,15 @@
         </form>
       </div>
       <div class="col-lg-2 text-right task-control">
-        <button class="btn btn-info change-task"><span class="glyphicon glyphicon-edit"></span></button>
-        <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+        <button class="btn btn-info change-task">
+          <span class="glyphicon glyphicon-edit"></span>
+        </button>
+        <form id = "delete-task" action="/task/delete" method = "get">
+          <input type="hidden" name = "id" value = "<?php echo $task->id; ?>">
+          <button class="btn btn-danger delete-task-button">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </form>
       </div>
       
         <?php foreach ($task->comment as $comment){ ?>
