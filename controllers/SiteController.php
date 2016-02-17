@@ -9,6 +9,11 @@ use app\models\Task;
 class SiteController extends Controller
 {
 
+    public static function locale()
+    {
+        Yii::$app->language = Yii::$app->session->get('language');
+    }
+
     private static function getTasks()
     {
         $data = Task::find()->all();
@@ -37,5 +42,6 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('errors', Yii::t('msg/msg', 'Что-то пошло не так, письмо не отправлено'));
         }
         
+        return $this->redirect("/");
     }
 }

@@ -29,7 +29,7 @@ AppAsset::register($this);
         <a href="/site/locale/?lang=en-US">English</a>
     </div>
     <div class="text-right">
-        <a class = "text-right" href="/task/email"><?php echo Yii::t('msg/msg', 'Отправить на Email'); ?></a>
+        <a class = "text-right" href="/site/email"><?php echo Yii::t('msg/msg', 'Отправить на Email'); ?></a>
     </div>
 </header>
 <div class="wrap">

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use app\controllers\SiteController;
 use app\models\Comment;
 
 class CommentController extends Controller
@@ -14,6 +15,8 @@ class CommentController extends Controller
 
   public function actionNew($id, $text)
   {
+    SiteController::locale();
+
     $comment = new Comment();
     $comment->task_id = $id;
     $comment->text = $text;
@@ -31,6 +34,8 @@ class CommentController extends Controller
 
   public function actionDelete($id)
   {
+    SiteController::locale();
+    
     $comment = Comment::findOne($id);
     if($comment->delete())
     {
