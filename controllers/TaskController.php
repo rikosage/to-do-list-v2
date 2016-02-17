@@ -44,6 +44,27 @@ class TaskController extends Controller
     return $this->redirect("/");
   }
 
+  public function actionChange($id, $title)
+  {
+    $task = Task::findOne($id);
+    $task->title = $title;
+    if($task->save())
+    {
+      Yii::$app->session->setFlash('success', "Запись обновлена");
+    }
+    else
+    {
+      Yii::$app->session->setFlash('errors', $task->errors);
+    }
+
+    return $this->redirect("/");
+  }
+
+  public function actionDelete()
+  {
+
+  }
+
   public function actionNewComment($id, $text)
   {
     $comment = new Comment();
@@ -58,6 +79,21 @@ class TaskController extends Controller
     {
       Yii::$app->session->setFlash('errors', $comment->errors);
     }
+    return $this->redirect("/");
+  }
+
+  public function actionDeleteComment($id)
+  {
+    $comment = Comment::findOne($id);
+    if($comment->delete())
+    {
+      Yii::$app->session->setFlash('success', "Комментарий удален");
+    }
+    else
+    {
+      Yii::$app->session->setFlash('errors', $comment->errors);
+    }
+    
     return $this->redirect("/");
   }
 

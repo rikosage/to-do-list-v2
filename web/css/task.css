@@ -36,6 +36,14 @@
   margin-top: 5px;
 }
 
+.change-title{
+  display: none;
+}
+
+.change-title button{
+  margin-top: 10px;
+}
+
 .active{
 }
 
