@@ -1,0 +1,33 @@
+<IfModule mod_autoindex.c>
+
+   #Запрещает просмотр содержимого папок
+
+    Options -Indexes
+
+</IfModule>     
+
+ # Запретить доступ к файлам, начинающимся с точки
+
+RewriteRule (^\.|/\.) - [F]
+
+<IfModule mod_rewrite.c>
+
+  RewriteEngine on
+
+ RewriteCond %{REQUEST_URI} !^public
+
+  RewriteRule ^(.*)$ frontend/web/$1 [L]  
+
+  RewriteRule . index.php
+
+</IfModule>
+
+ # Запретить доступ к расширениям нижнего уровня
+
+<Files ~ "(.json|.lock|.git)">
+
+Order allow,deny
+
+Deny from all
+
+</Files>
