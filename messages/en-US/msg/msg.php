@@ -1,4 +1,7 @@
 <?php
+/**
+ * В этом файле определены переводы сообщений
+ */
 return [  
    'Ошибка'=>'Error',
    'Вернуться на главную' => 'Back home',
@@ -21,5 +24,5 @@ return [
    "Сменить язык" => "Change language",
    "Отправить на Email" => "Send to Email",
    "Письмо отправлено" => "Mail has been send",
-   "Что-то пошло не так, письмо не отправлено" => 'Something went wrong! Mail doesn\'t sended',
+   "Что-то пошло не так, письмо не было отправлено" => 'Something went wrong! The Email isn\'t sent',
 ]; 

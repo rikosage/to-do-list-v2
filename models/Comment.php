@@ -7,9 +7,16 @@ use yii\db\ActiveRecord;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 
+
+/**
+ * Модель для работы с таблицей comments
+ */
 class Comment extends ActiveRecord
 {
 
+  /**
+   * Правила валидации для модели
+   */
   public function rules()
   {
     return 
@@ -21,11 +28,20 @@ class Comment extends ActiveRecord
     ];
   }
 
+  /**
+   * Поиск комментариев по идентификатору записи
+   * @return object  Выборка из базы данных
+   */
   public function getTask()
   {
     return $this->hasOne(Tasks::className(), ['task_id' => 'task_id']);
   }
 
+
+  /**
+   * Имя запрашиваемой таблицы
+   * @return string
+   */
   public static function tableName()
   {
     return "comments";

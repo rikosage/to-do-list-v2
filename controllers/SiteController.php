@@ -6,26 +6,52 @@ use Yii;
 use yii\web\Controller;
 use app\models\Task;
 
+
+/**
+ * Класс описывает общие методы при работе с приложением
+ */
 class SiteController extends Controller
 {
 
+    /**
+     * Определение текущего языка
+     */
+    
     public static function locale()
     {
         Yii::$app->language = Yii::$app->session->get('language');
     }
 
+
+    /**
+     * Статический метод, возвращающий все поля таблицы tasks
+     * @return object
+     */
+    
     private static function getTasks()
     {
         $data = Task::find()->all();
         return $data;
     }
 
+
+    /**
+     * Установка требуемого языка
+     * @param  string $lang  Язык в формате en-US
+     * @return redirect      Редиректит на главную страницу
+     */
     public function actionLocale($lang)
     {
         Yii::$app->session->set('language', $lang);
         return $this->redirect("/");
     }
 
+    /**
+     * Отправка сообщения с активными задачами на почту, указанную в config/params.php
+     * @return redirect      Редиректит на главную страницу и устанавливает сообщение об успехе
+     *                       или лог ошибок
+     */
+    
     public function actionEmail()
     {
         $data = self::getTasks();

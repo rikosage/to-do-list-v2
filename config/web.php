@@ -11,11 +11,6 @@ $config = [
     'components' => [
         'i18n' => [
             'translations' => [
-                'models*' => [ // заголовки для моделей
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages', // путь к файлам перевода
-                    'sourceLanguage' => 'ru-RU', // Язык с которого переводиться (данный язык использован в текстах сообщений).
-                ],
                 'msg*' => [ // другие заголовки
                     'class' => 'yii\i18n\PhpMessageSource', 
                     'basePath' => '@app/messages',// путь к файлам перевода
@@ -25,8 +20,7 @@ $config = [
             ],
         ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '123',
+            'cookieValidationKey' => "1234s",
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -38,13 +32,16 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
+        //Здесь полагается определить настройки почтового сервера.
+        //По умолчанию используется mail.ru
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host'  => 'smtp.mail.ru',
-                'username' => 'rikosage@mail.ru',
-                'password' => 'DSE1223PZSS800R',
+                'username' => '', //Email-адрес, с которого будут отправляться уведомления
+                'password' => '', //Пароль пользователя
                 'port'     => '587',
                 'encryption' => 'tls', 
             ],
