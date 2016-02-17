@@ -21,6 +21,11 @@ class Task extends ActiveRecord
     );
 }
 
+  public function getComment()
+  {
+    return $this->hasMany(Comment::className(), ['task_id' => 'id']);
+  }
+
   public static function tableName()
   {
     return "tasks";

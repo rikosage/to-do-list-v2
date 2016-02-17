@@ -2,6 +2,12 @@
 
 <?php $this->title = 'Task'; ?>
 
+<pre>
+<?php //print_r($data[0]['comment']) ?>
+</pre>
+
+
+
 <?php  
   if (Yii::$app->session->hasFlash('errors'))
   {
@@ -31,18 +37,54 @@
 
 <div class="row">
   <div class="add-container col-lg-8 col-lg-offset-2">
-    <form action="/task/new" method = "post">
-      <label>Введите название нового задания</label>
-      <input class = "form-control" type="text" name = "title" />
-      <button type = "submit" class = "btn btn-success">Создать</button>
+    <form action="/task/new" method = "get">
+      <h4 class = "col-lg-8">Введите название нового задания</h4>
+      <div class="col-lg-8"><input class = "form-control" type="text" name = "title" /></div>
+      <div class="col-lg-4">
+        <button type = "submit" class = "btn btn-success form-control">Создать</button>
+      </div>
     </form>
   </div>
 </div>
 
 <div class="task-container col-lg-8 col-lg-offset-2">
   <?php foreach ($data as $task){ ?>
-    <div class="task">
-     <div class="title"><h2 class = "text-center"><?php echo $task->title; ?></h2></div>
+  <?php $active = $task->status ? "active" : "non-active"; ?>
+    <div class="row task <?php echo $active; ?>">
+
+      <div class="col-lg-2">
+          <button class = "btn btn-success form-control"><span class = "glyphicon glyphicon-ok"></span></button>
+      </div>
+      <div class="col-lg-8 title">
+        <h4 class = "text-center col-lg-8"><?php echo $task->title; ?></h4>
+        <p class = "text-right"><?php echo $task->date; ?></p>
+      </div>
+      <div class="col-lg-2 text-right">
+        <button class="btn btn-info"><span class="glyphicon glyphicon-edit"></span></button>
+        <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+      
+        <?php foreach ($task->comment as $comment){ ?>
+        <?php if ($task->status) {?>
+        <div class="col-lg-8 comment-container">
+          <div class = "bg-success comment ">
+          <div class="date text-right"><?php echo $comment->date; ?></div>
+            <p class = "col-lg-offset-1"><?php echo $comment->text; ?></p>
+
+          </div>
+        </div>
+        <?php } }?>
+      
+      <div class="col-lg-8 new-comment" method = "get">
+        <form action="/task/new-comment/">
+          <label>Комментировать</label>
+          <input type="hidden" name = "id" value = "<?php echo $task->id; ?>" />
+          <textarea name="text" class = "form-control"></textarea>
+          <button class = "btn btn-success">Подтвердить</button>
+          
+        </form>
+      </div>
     </div>
+    
   <?php } ?>
 </div>
